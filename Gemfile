@@ -43,3 +43,7 @@ end
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
+gem 'faye'
+gem 'capybara'
+gem 'poltergeist'
+gem 'puma'
