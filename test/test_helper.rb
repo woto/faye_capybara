@@ -4,6 +4,20 @@ require 'rails/test_help'
 require 'capybara/rails'
 require 'capybara/poltergeist'
 
+Capybara.server do |app, port|
+  Puma::Server.new(app).tap do |s|
+    s.add_tcp_listener '127.0.0.1', port
+  end.run.join
+end
+
+bayeux = Faye::RackAdapter.new(
+  Rails.application,
+  :mount => '/faye',
+  :timeout => 25,
+)
+
+Capybara.app = bayeux
+
 Capybara.default_driver = :poltergeist
 Capybara.javascript_driver = :poltergeist
 
