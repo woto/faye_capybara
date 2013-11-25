@@ -6,7 +6,9 @@ class VisitTest < ActionDispatch::IntegrationTest
 
   test 'Visiting root page with Capybara shoud not raise error' do
 
+    Capybara.session_name = :first
     visit '/'
+    sleep 0.1
 
     page.execute_script <<-"EOL"
 
@@ -18,6 +20,8 @@ class VisitTest < ActionDispatch::IntegrationTest
 
     EOL
 
+    Capybara.session_name = :second
+    visit '/'
     sleep 0.1
 
     page.execute_script <<-"EOL"
@@ -30,6 +34,7 @@ class VisitTest < ActionDispatch::IntegrationTest
 
     EOL
 
+    Capybara.session_name = :first
     sleep 0.1
 
     save_screenshot 'image.png'

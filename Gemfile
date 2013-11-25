@@ -47,5 +47,6 @@ end
 gem 'faye'
 gem 'capybara'
 gem 'poltergeist'
+gem 'selenium-webdriver'
 gem 'puma'
 gem 'debugger'

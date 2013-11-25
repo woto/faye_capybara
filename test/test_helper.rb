@@ -10,13 +10,8 @@ Capybara.server do |app, port|
   end.run.join
 end
 
-bayeux = Faye::RackAdapter.new(
-  Rails.application,
-  :mount => '/faye',
-  :timeout => 25,
-)
-
-Capybara.app = bayeux
+#Capybara.default_driver = :selenium
+#Capybara.javascript_driver = :selenium
 
 Capybara.default_driver = :poltergeist
 Capybara.javascript_driver = :poltergeist
